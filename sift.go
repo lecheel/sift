@@ -141,6 +141,7 @@ var global = struct {
 	totalMatchCount       int64
 	totalResultCount      int64
 	totalTargetCount      int64
+	curdir	              string	
 }{
 	outputFile:         os.Stdout,
 	netTcpRegex:        regexp.MustCompile(`^(tcp[46]?)://(.*:\d+)$`),

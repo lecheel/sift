@@ -275,7 +275,11 @@ func printResult(result *Result) {
 	}
 
 	if options.GroupByFile {
-		writeOutput(global.termHighlightFilename+"%s\n"+global.termHighlightReset, result.target)
+	        if options.FteStyle {
+		    writeOutput(global.termHighlightFilename+"File: %s%s\n"+global.termHighlightReset, global.curdir, result.target)
+		} else {
+			writeOutput(global.termHighlightFilename+"%s\n"+global.termHighlightReset, result.target)
+	    }
 	}
 
 	var lastPrintedLine int64 = -1

@@ -55,6 +55,7 @@ type Options struct {
 	FilesWithMatches   bool     `short:"l" long:"files-with-matches" description:"list files containing matches"`
 	FilesWithoutMatch  bool     `short:"L" long:"files-without-match" description:"list files containing no match"`
 	GroupByFile        bool     `long:"group" description:"group output by file (default: off)"`
+	FteStyle           bool     `long:"fte" description:"FTE print format (default: off)"`
 	NoGroupByFile      func()   `long:"no-group" description:"do not group output by file" json:"-"`
 	IgnoreCase         bool     `short:"i" long:"ignore-case" description:"case insensitive (default: off)"`
 	NoIgnoreCase       func()   `short:"I" long:"no-ignore-case" description:"disable case insensitive" json:"-"`
@@ -612,6 +613,21 @@ func (o *Options) performAutoDetections(targets []string) {
 		} else {
 			o.Color = "off"
 		}
+	}
+
+	if o.FteStyle {
+	    var workdir string
+	    workdir,err := os.Getwd()
+	    if err != nil {
+		workdir = "."
+	    }
+	    curpath, err := filepath.Abs(workdir)
+	    if err != nil || curpath == "" {
+		curpath=""
+	    }
+	    global.curdir = curpath+"/"
+	    o.GroupByFile = true
+	    o.ShowLineNumbers = true
 	}
 
 	if o.GroupByFile {
