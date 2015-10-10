@@ -351,8 +351,10 @@ func processFileTargets() {
 		} else {
 			err = processReader(reader, matchRegexes, dataBuffer, testBuffer, filepath)
 		}
-		if err != nil {
+		if !options.FteStyle {
+		    if err != nil {
 			errorLogger.Printf("cannot process data from file '%s': %s\n", filepath, err)
+		    }
 		}
 		infile.Close()
 	}

@@ -70,5 +70,9 @@ func init() {
 			Patterns:     []string{"*.xml", "*.dtd", "*.xsl", "*.xslt", "*.ent"},
 			ShebangRegex: regexp.MustCompile(`<\?xml`),
 		},
+		"macro": FileType{
+			Name:         "macro",
+			Patterns:     []string{"*.el", "*.emf", "*.sl", "*.vim", "*.s"},
+		},
 	}
 }
